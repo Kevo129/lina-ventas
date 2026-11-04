@@ -1,0 +1,22 @@
+{
+  "name": "lina-ventas",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:esquema": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f db/001_esquema.sql -f db/002_vistas.sql",
+    "migrar:exportar": "node migracion/exportar.mjs",
+    "migrar:importar": "node migracion/importar.mjs",
+    "usuario": "node scripts/usuario.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.15",
+    "next": "^16.4.5",
+    "postgres": "^3.4.9",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}
