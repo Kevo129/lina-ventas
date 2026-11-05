@@ -4,7 +4,7 @@
 // Uso: DATOS_DIR=/tmp/prueba node migracion/generar-prueba.mjs
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { F } from './airtable-campos.mjs';
+import { F, nombreLocal } from './airtable-campos.mjs';
 
 const DIR = process.env.DATOS_DIR || '/tmp/prueba';
 let seed = 42;
@@ -33,7 +33,7 @@ const vendedores = [{ id: 'usrhL6TRAx6E9lCU5', email: 'kevin.paz@linahp.com', na
 
 const att = async (nombre, tipo = 'application/pdf') => {
   const a = { id: rid('att'), filename: nombre, size: 20, type: tipo, url: 'https://ejemplo.invalid/' + nombre };
-  await fs.writeFile(path.join(DIR, 'adjuntos', `${a.id}__${nombre}`), `%PDF-1.4 prueba ${nombre}\n`);
+  await fs.writeFile(path.join(DIR, 'adjuntos', nombreLocal(a)), `%PDF-1.4 prueba ${nombre}\n`);
   return a;
 };
 

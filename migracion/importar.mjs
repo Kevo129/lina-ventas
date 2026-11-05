@@ -9,7 +9,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import postgres from 'postgres';
-import { F, ADJUNTOS } from './airtable-campos.mjs';
+import { F, ADJUNTOS, nombreLocal } from './airtable-campos.mjs';
 import { guardarArchivo } from '../lib/storage.mjs';
 
 const DIR = process.env.DATOS_DIR || path.join(path.dirname(fileURLToPath(import.meta.url)), 'datos');
@@ -205,7 +205,7 @@ async function main() {
       for (const [tabla, campo, entidad, campoDestino] of ADJUNTOS) {
         for (const r of d[tabla]) {
           for (const att of r.fields[campo] ?? []) {
-            const local = path.join(DIR, 'adjuntos', `${att.id}__${att.filename.replace(/[\/\\]/g, '_')}`);
+            const local = path.join(DIR, 'adjuntos', nombreLocal(att));
             let buf;
             try { buf = await fs.readFile(local); } catch { faltan++; continue; }
             const entidadId = tablaMap[tabla][r.id];

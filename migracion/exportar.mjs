@@ -10,7 +10,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { BASE_ID, T, ADJUNTOS } from './airtable-campos.mjs';
+import { BASE_ID, T, ADJUNTOS, nombreLocal } from './airtable-campos.mjs';
 
 const DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), 'datos');
 const TOKEN = process.env.AIRTABLE_TOKEN;
@@ -48,7 +48,7 @@ async function descargarTabla(nombre, tableId) {
 }
 
 async function descargarAdjunto(att) {
-  const destino = path.join(DIR, 'adjuntos', `${att.id}__${att.filename.replace(/[\/\\]/g, '_')}`);
+  const destino = path.join(DIR, 'adjuntos', nombreLocal(att));
   try { await fs.access(destino); return 'ya'; } catch {}
   for (let i = 1; i <= 3; i++) {
     try {

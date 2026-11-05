@@ -54,3 +54,6 @@ export const ADJUNTOS = [
   ['ordenes', F.ordenes.docFactura, 'ordenes_compra', 'factura'],
   ['importaciones', F.importaciones.documento, 'importaciones', 'documento'],
 ];
+
+// Nombre del adjunto en disco (válido en Windows, Mac y Linux)
+export const nombreLocal = (att) => `${att.id}__${att.filename.replace(/[\\/:*?"<>|\x00-\x1f]/g, '_').slice(0, 150)}`;
