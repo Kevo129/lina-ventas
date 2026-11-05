@@ -29,7 +29,7 @@ Las fórmulas de Airtable (Estatus, Saldo Pendiente, Subtotal, Total en Stock, e
 2. **Instalar y crear tablas**
    ```bash
    npm install
-   npm run db:esquema          # requiere psql; o pega db/001 y db/002 en el SQL Editor de Supabase
+   npm run db:esquema          # requiere psql; o pega db/001, db/002 y db/003 en el SQL Editor de Supabase
    ```
 3. **Migrar desde Airtable**
    - Crea un token en airtable.com/create/tokens con `data.records:read` y `schema.bases:read` sobre "Base de Ventas".
